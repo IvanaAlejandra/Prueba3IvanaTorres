@@ -71,6 +71,10 @@ public class Mascota {
         return "Mascota{" + "edad=" + edad + ", Chip=" + Chip + ", nombreMascota=" + nombreMascota + ", fechaNacimiento=" + fechaNacimiento + ", dueno=" + dueno + '}';
     }
 
+    public String getRutDueno() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
     
     

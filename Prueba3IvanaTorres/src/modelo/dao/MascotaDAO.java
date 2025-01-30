@@ -20,9 +20,9 @@ import modelo.dto.Mascota;
  * @author PAAPCA02LC0828
  */
 public class MascotaDAO {
-    private String url = "jdbc:mysql://localhost:3306/tienda";
+    private String url = "jdbc:mysql://localhost:3306/veterinaria";
     private String user = "root";
-    private String pass = " ";
+    private String pass = "";
     
     //conexion bd
     
@@ -72,24 +72,24 @@ public class MascotaDAO {
     }
     
     // listar mascota
-    public List<Mascota> listarMascota() {
+    public List<Mascota> listarMascotas() {
         List<Mascota> lista = new ArrayList<>();
-        String query = "SELECT * FROM mascota";
-        try (Connection conn = conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
-            while(rs.next()) {  
-               lista.add(new Mascota(
-                       rs.getString("chip"),
-                       rs.getString("rut_dueno"),
-                       rs.getString("apellido"),                       
-                       rs.getString("telefono"),
-                       rs.getInt("edad"),
-                       new Dueno(rs.getInt("dueno"))
-               ));
+        String sql = "SELECT * FROM mascota";
+        try (Connection conn = conectar();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                lista.add(new Mascota(
+                        rs.getString("chip"),
+                        rs.getString("rut_dueno"),
+                        rs.getString("nombre_mascota"),
+                        rs.getString("fecha_nacimiento"),
+                        rs.getInt("edad")
+                ));
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return lista;
     }
-    
 }
